@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>List My House on Mzini</h1>
+<form class="form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label>Title<input type="text" name="title" required></label>
+  <label>Price<input type="number" name="price" step="0.01" required></label>
+  <label>Address<input type="text" name="address" required></label>
+  <div class="row">
+    <label>City<input type="text" name="city" required></label>
+    <label>State<input type="text" name="state"></label>
+    <label>Zip<input type="text" name="zipcode"></label>
+  </div>
+  <div class="row">
+    <label>Bedrooms<input type="number" name="bedrooms" min="0" required></label>
+    <label>Bathrooms<input type="number" name="bathrooms" step="0.5" min="0" required></label>
+    <label>Size (sqft)<input type="number" name="size_sqft" min="0" required></label>
+  </div>
+  <label>Type
+    <select name="property_type">
+      <option value="house">House</option>
+      <option value="apartment">Apartment</option>
+      <option value="townhouse">Townhouse</option>
+    </select>
+  </label>
+  <label>Description<textarea name="description" rows="5"></textarea></label>
+  <label>Cover Image<input type="file" name="cover_image" accept="image/*"></label>
+  <div class="row">
+    <label>Contact Name<input type="text" name="contact_name"></label>
+    <label>Contact Email<input type="email" name="contact_email"></label>
+    <label>Contact Phone<input type="text" name="contact_phone"></label>
+  </div>
+  <button class="btn" type="submit">List My House on Mzini</button>
+</form>
+{% endblock %}
+
+

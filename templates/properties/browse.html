@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Browse Properties</h1>
+<form class="filters" method="get">
+  <input type="text" name="location" value="{{ request.GET.location }}" placeholder="Location">
+  <input type="number" name="min_price" value="{{ request.GET.min_price }}" placeholder="Min Price">
+  <input type="number" name="max_price" value="{{ request.GET.max_price }}" placeholder="Max Price">
+  <select name="type">
+    <option value="">All Types</option>
+    <option value="apartment">Apartment</option>
+    <option value="townhouse">Townhouse</option>
+    <option value="house">House</option>
+  </select>
+  <button class="btn" type="submit">Filter</button>
+  <a class="btn secondary" href="/properties/">Clear</a>
+  <a class="btn" style="margin-left:auto" href="/properties/sell/">List Your Home</a>
+  
+</form>
+
+<div class="grid">
+  {% for p in properties %}
+    <a class="card" href="/properties/{{ p.id }}/">
+      {% if p.cover_image %}
+      <img src="{{ p.cover_image.url }}" alt="{{ p.title }}">
+      {% endif %}
+      <div class="card-body">
+        <div class="price">${{ p.price }}</div>
+        <div class="meta">{{ p.bedrooms }} bd • {{ p.bathrooms }} ba • {{ p.city }}</div>
+      </div>
+    </a>
+  {% empty %}
+    <p>No properties found.</p>
+  {% endfor %}
+</div>
+{% endblock %}
+
+

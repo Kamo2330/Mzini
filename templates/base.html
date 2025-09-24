@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mzini</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="/" class="brand">Mzini</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/properties/">Browse</a>
+                <a href="/properties/sell/" class="btn">Sell</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© {{ now|default:2025 }} Mzini. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+

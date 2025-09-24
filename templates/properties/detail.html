@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="property-detail">
+  <h1>{{ property.title }}</h1>
+  <div class="gallery">
+    {% if property.cover_image %}
+    <img class="cover" src="{{ property.cover_image.url }}" alt="{{ property.title }}">
+    {% endif %}
+    <div class="thumbs">
+      {% for img in property.images.all %}
+      <img src="{{ img.image.url }}" alt="{{ img.caption }}">
+      {% endfor %}
+    </div>
+  </div>
+  <div class="info">
+    <div class="price">${{ property.price }}</div>
+    <div class="meta">{{ property.bedrooms }} bd • {{ property.bathrooms }} ba • {{ property.size_sqft }} sqft</div>
+    <div class="address">{{ property.address }}, {{ property.city }} {{ property.state }} {{ property.zipcode }}</div>
+    <p>{{ property.description }}</p>
+  </div>
+  <section class="contact-form">
+    <h2>Contact Seller / Schedule Viewing</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label>Name<input type="text" name="name" required></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Message<textarea name="message" rows="4" required>I'm interested in {{ property.title }}.</textarea></label>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </section>
+  <div class="map-embed">
+    <iframe src="https://www.google.com/maps?q={{ property.address|urlencode }}%20{{ property.city|urlencode }}&output=embed" loading="lazy"></iframe>
+  </div>
+</article>
+{% endblock %}
+
+

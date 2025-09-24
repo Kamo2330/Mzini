@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <h1>Find Your Dream Home with Mzini</h1>
+  <form class="search-bar" action="/properties/" method="get">
+    <input type="text" name="location" placeholder="Location">
+    <input type="number" name="min_price" placeholder="Min Price">
+    <input type="number" name="max_price" placeholder="Max Price">
+    <input type="number" name="bedrooms" placeholder="Bedrooms">
+    <button type="submit" class="btn">Search</button>
+  </form>
+</section>
+
+<section>
+  <h2>Featured Listings</h2>
+  <div class="grid">
+    {% for p in featured %}
+      <a class="card" href="/properties/{{ p.id }}/">
+        {% if p.cover_image %}
+        <img src="{{ p.cover_image.url }}" alt="{{ p.title }}">
+        {% endif %}
+        <div class="card-body">
+          <div class="price">${{ p.price }}</div>
+          <div class="meta">{{ p.bedrooms }} bd • {{ p.bathrooms }} ba • {{ p.city }}</div>
+        </div>
+      </a>
+    {% empty %}
+      <p>No featured listings yet.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Contact Us</h1>
+<form class="form" method="post">
+  {% csrf_token %}
+  <label>Name<input type="text" name="name" required></label>
+  <label>Email<input type="email" name="email" required></label>
+  <label>Message<textarea name="message" rows="5" required></textarea></label>
+  <button class="btn" type="submit">Send</button>
+  <p class="muted">Office: 123 Market St, Cape Town</p>
+  <div class="map-embed">
+    <iframe src="https://www.google.com/maps?q=Cape%20Town&output=embed" loading="lazy"></iframe>
+  </div>
+</form>
+{% endblock %}
+
+
